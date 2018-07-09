@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2011-2014, Chris Johnsen <chris_johnsen@pobox.com>
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
@@ -9,12 +9,12 @@
  *     1. Redistributions of source code must retain the above
  *        copyright notice, this list of conditions and the following
  *        disclaimer.
- * 
+ *
  *     2. Redistributions in binary form must reproduce the above
  *        copyright notice, this list of conditions and the following
  *        disclaimer in the documentation and/or other materials
  *        provided with the distribution.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -39,8 +39,8 @@
 #include "msg.h"
 #include "move_to_user_namespace.h"
 
-static const char version[] = "2.6";
-static const char supported_oses[] = "OS X 10.5-10.13";
+static const char version[] = "2.7";
+static const char supported_oses[] = "OS X 10.5-10.14";
 
 #if 0
 void * _vprocmgr_move_subset_to_user(uid_t target_user, const char *session_type, uint64_t flags); /* 10.6 */
@@ -120,16 +120,17 @@ int main(int argc, char *argv[]) {
      *   10.11=> 101000
      *   10.12=> 101000
      *   10.13=> 101000
+     *   10.14=> 101000
      *  newer => 101000 with warning
      */
     if (100600 <= os && os <= 100900)
         os = 100600;
-    else if (101000 <= os && os <= 101300)
+    else if (101000 <= os && os <= 101400)
       os = 101000;
     else if (os < 100500) {
         warn("%s: unsupported old OS, trying as if it were 10.5", argv[0]);
         os = 100500;
-    } else if (os > 101300) {
+    } else if (os > 101400) {
         warn("%s: unsupported new OS, trying as if it were 10.10", argv[0]);
         os = 101000;
     }
